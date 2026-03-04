@@ -18,10 +18,17 @@ h1 {
     width: 80%;
     max-width: 800px;
     border: 1px solid #666;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
     background-color: #444;
     color: #fff;
+    transition: box-shadow 0.3s;
+}
+
+#searchBar:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
 }
 
 #container {
@@ -40,11 +47,12 @@ h1 {
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .zone-item:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 }
 
 .zone-item img {
@@ -54,7 +62,8 @@ h1 {
     display: block;
 }
 
-.zone-item button {
+/* --- GLOWY BUTTONS --- */
+.zone-item button, #dataButtons button, #controls button, #darkModeToggle {
     width: 100%;
     padding: 12px;
     border: none;
@@ -63,6 +72,32 @@ h1 {
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
+    transition: all 0.3s ease;
+    /* Initial subtle glow */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.zone-item button:hover, #dataButtons button:hover, #controls button:hover, #darkModeToggle:hover {
+    background-color: #00a2ff;
+    /* High-intensity glow effect */
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.6), 0 0 30px rgba(0, 162, 255, 0.3);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Specific styling for top controls to keep them separate */
+#dataButtons button {
+    width: auto;
+    padding: 10px 15px;
+}
+
+#darkModeToggle {
+    width: auto;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    z-index: 1001;
 }
 
 /* Viewer Styles */
@@ -77,7 +112,7 @@ h1 {
     background: #222;
     border: 1px solid #444;
     z-index: 1000;
-    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    box-shadow: 0 0 40px rgba(0,0,0,0.9);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -108,7 +143,7 @@ h1 {
     gap: 10px;
 }
 
-#dataButtons button, #sortOptions {
+#sortOptions {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #666;
@@ -117,26 +152,25 @@ h1 {
     cursor: pointer;
 }
 
-#darkModeToggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px;
-    border-radius: 50px;
-    cursor: pointer;
-    z-index: 1001;
-}
-
 /* Light Mode Overrides */
 body:not(.dark-mode) {
     background-color: #f4f4f4;
     color: #000;
 }
+
 body:not(.dark-mode) .zone-item {
     background-color: #fff;
     border-color: #ccc;
 }
+
 body:not(.dark-mode) #searchBar {
     background-color: #fff;
     color: #000;
+    border-color: #ccc;
+}
+
+body:not(.dark-mode) #sortOptions {
+    background-color: #fff;
+    color: #000;
+    border-color: #ccc;
 }
